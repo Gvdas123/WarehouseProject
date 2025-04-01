@@ -1,0 +1,24 @@
+<div class="welcome-container d-flex flex-column align-items-center justify-content-center vh-100 bg-light">
+    <div class="card shadow p-5 text-center" style="width: 100%; max-width: 500px;">
+      <h1 class="mb-4">Welcome</h1>
+      <p class="lead mb-5">Please select your access method</p>
+      
+      <div class="d-grid gap-3">
+        <!-- Master Login Button -->
+        <button 
+          class="btn btn-primary btn-lg py-3"
+          routerLink="/master-login">
+          <i class="bi bi-shield-lock me-2"></i>
+          Master Login
+        </button>
+        
+        <!-- Scanner Auth Button -->
+        <button 
+          class="btn btn-success btn-lg py-3"
+          routerLink="/auth">
+          <i class="bi bi-upc-scan me-2"></i>
+          Scanner Authentication
+        </button>
+      </div>
+    </div>
+  </div>

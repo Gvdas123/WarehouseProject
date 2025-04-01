@@ -1,0 +1,95 @@
+<div class="container mt-4">
+  <div class="card shadow">
+    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+      <h2 class="mb-0">Projects</h2>
+      <div class="btn-group">
+      <button class="btn btn-light ms-2" (click)="navigateTo('/Main')">
+        <i class="bi bi-book-half"></i> Return to main page
+      </button>
+      <button class="btn btn-light ms-2" (click)="logout()">
+        <i class="bi bi-sign-turn-left"></i> Logout
+      </button>
+      </div>
+    </div>
+    
+    <div class="card-body">
+      <button class="btn btn-success mb-3" (click)="showAddForm = true">
+        <i class="bi bi-plus-circle"></i> Add Project
+      </button>
+
+      @if (showAddForm) {
+        <div class="card mb-3">
+          <div class="card-body">
+            <h5>Add New Project</h5>
+            <div class="mb-3">
+              <label class="form-label">Project Name</label>
+              <input type="text" class="form-control" [(ngModel)]="newProject.name">
+            </div>
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input" [(ngModel)]="newProject.status">
+              <label class="form-check-label">Active</label>
+            </div>
+            <div class="d-flex gap-2">
+              <button class="btn btn-primary" (click)="addProject()">Save</button>
+              <button class="btn btn-outline-secondary" (click)="showAddForm = false">Cancel</button>
+            </div>
+          </div>
+        </div>
+      }
+
+      @if (isLoading()) {
+        <div class="text-center my-4">
+          <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      } @else {
+        <div class="table-responsive">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (project of projects(); track project._id) {
+                <tr>
+                  <td>{{ project.name }}</td>
+                  <td>
+                    <span class="badge" [ngClass]="project.status ? 'bg-success' : 'bg-secondary'">
+                      {{ project.status ? 'Active' : 'Inactive' }}
+                    </span>
+                  </td>
+                  <td class="d-flex gap-2">
+                    <button class="btn btn-sm btn-primary" (click)="openProject(project._id)">
+                      <i class="bi bi-folder2-open"></i> Open
+                    </button>
+                    <button class="btn btn-sm btn-warning" (click)="toggleStatus(project)">
+                      <i class="bi" [ngClass]="project.status ? 'bi-toggle-off' : 'bi-toggle-on'"></i>
+                      {{ project.status ? 'Deactivate' : 'Activate' }}
+                    </button>
+                    <button class="btn btn-sm btn-danger" (click)="deleteProject(project._id)">
+                      <i class="bi bi-trash"></i> Delete
+                    </button>
+                  </td>
+                </tr>
+              } @empty {
+                <tr>
+                  <td colspan="3" class="text-center">No projects found</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      }
+
+      @if (error) {
+        <div class="alert alert-danger mt-3">
+          {{ error }}
+        </div>
+      }
+    </div>
+  </div>
+</div>

@@ -1,0 +1,67 @@
+.scan-product-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  outline: none; /* Remove focus outline since whole page is scanner */
+}
+
+.scan-indicator {
+  background: #f8f9fa;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #666;
+}
+
+.scan-confirmation {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 4px;
+  margin-top: 20px;
+}
+
+.warning {
+  color: #e67e22;
+  font-weight: bold;
+}
+
+.info {
+  color: #2ecc71;
+}
+
+.button-group button {
+  margin-right: 10px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.overlay-content {
+  background: white;
+  padding: 30px;
+  border-radius: 5px;
+  text-align: center;
+}

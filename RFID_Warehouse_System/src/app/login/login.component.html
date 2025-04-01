@@ -1,0 +1,40 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-4">
+        <div class="card shadow">
+          <div class="card-header bg-primary text-white">
+            <h2 class="text-center">Login</h2>
+          </div>
+          <div class="card-body">
+            @if (loginService.loading$()) {
+              <div class="text-center">
+                <div class="spinner-border text-primary" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+              </div>
+            } @else {
+              <form (ngSubmit)="login()">
+                <div class="mb-3">
+                  <label for="username" class="form-label">Username</label>
+                  <input type="text" class="form-control" id="username" 
+                         [(ngModel)]="credentials.username" name="username" required>
+                </div>
+                <div class="mb-3">
+                  <label for="password" class="form-label">Password</label>
+                  <input type="password" class="form-control" id="password" 
+                         [(ngModel)]="credentials.password" name="password" required>
+                </div>
+                @if (error) {
+                  <div class="alert alert-danger">{{ error }}</div>
+                }
+                <button type="submit" class="btn btn-primary w-100">Login</button>
+              </form>
+            }
+            <button class="btn btn-light ms-2" (click)="navigateTo('/users')">
+              <i class="bi bi-people me-2"></i> Users
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

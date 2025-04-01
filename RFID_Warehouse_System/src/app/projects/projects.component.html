@@ -1,0 +1,19 @@
+<div class="projects-container container mt-4">
+  <h2 class="text-center mb-4 fw-bold text-primary">Projects</h2>
+
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    @for (project of projects; track project._id) {
+      <div class="col">
+        <div class="card shadow-sm border-0 h-100">
+          <div class="card-body text-center">
+            <h5 class="card-title fw-semibold">{{ project.name }}</h5>
+            <button class="btn btn-primary mt-3 w-100"
+                    (click)="selectProject(project._id)">
+              View Project
+            </button>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>

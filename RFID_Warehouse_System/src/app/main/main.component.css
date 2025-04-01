@@ -1,0 +1,27 @@
+.table-hover tbody tr {
+    transition: all 0.15s ease;
+  }
+  
+  .badge {
+    padding: 0.35em 0.65em;
+    font-size: 0.875em;
+  }
+  
+  .card-header .btn-light:hover {
+    background-color: #f8f9fa !important;
+    transform: translateY(-1px);
+  }
+  @media print {
+    body * {
+      visibility: hidden;
+    }
+    #pdfContent, #pdfContent * {
+      visibility: visible;
+    }
+    #pdfContent {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+    }
+  }

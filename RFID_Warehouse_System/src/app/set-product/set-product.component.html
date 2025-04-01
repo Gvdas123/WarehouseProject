@@ -1,0 +1,92 @@
+<div class="container mt-4">
+  <div class="card shadow">
+    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+      <h2>Products for Project</h2>
+      <div class="btn-group">
+      <button class="btn btn-light ms-2" (click)="navigateTo('/master-projects')">
+        <i class="bi bi-folder me-2"></i> Return to Projects
+      </button>
+      <button class="btn btn-light ms-2" (click)="navigateTo('/Main')">
+        <i class="bi bi-book-half"></i> Return to main page
+      </button>
+      <button class="btn btn-light ms-2" (click)="logout()">
+        <i class="bi bi-sign-turn-left"></i> Logout
+      </button>
+    </div>
+    </div>
+    <div class="card-body">
+      <h3>Add New Product</h3>
+      <form (submit)="addObjectProduct()">
+        <div class="mb-3">
+          <label class="form-label">Batch Number</label>
+          <input type="text" class="form-control" [(ngModel)]="newProduct.batchNumber" 
+                name="batchNumber" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Amount</label>
+          <input type="number" class="form-control" [(ngModel)]="newProduct.amount" 
+                name="amount" required min="1">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Date</label>
+          <input type="date" class="form-control" [(ngModel)]="newProduct.date" 
+                name="date" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Product</button>
+      </form>
+
+      <div class="row mt-4">
+        <div class="col-md-6">
+          <h3>Object Products</h3>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Batch</th>
+                <th>Amount</th>
+                <th>Date</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (product of objectProducts$ | async; track product._id) {
+                <tr>
+                  <td>{{ product.batchNumber }}</td>
+                  <td>{{ product.amount }}</td>
+                  <td>{{ product.date | date:'mediumDate' }}</td>
+                  <td>
+                    <button class="btn btn-sm btn-danger" 
+                            (click)="removeObjectProduct(product._id)">Delete</button>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+
+        <div class="col-md-6">
+          <h3>Dedicated Products</h3>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Batch</th>
+                <th>Amount</th>
+                <th>User</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (product of dedicatedProducts$ | async; track product.batchNumber) {
+                <tr>
+                  <td>{{ product.batchNumber }}</td>
+                  <td>{{ product.amount }}</td>
+                  <td>{{ product.user }}</td>
+                  <td>{{ product.date | date:'mediumDate' }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
